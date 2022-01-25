@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - .github/workflows/pytorch_transformers.yml
-      - docker/pytorch_transformers/**/*
+      - pytorch_transformers/**/*
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - uses: snow-actions/sparse-checkout@v1.1.0
         with:
           patterns: |
-            docker/pytorch_transformers//
+            pytorch_transformers//
       - name: Build
         run: docker build -t ghcr.io/${OWNER,,}/pytorch_transformers:${VERSION} .
         env:
