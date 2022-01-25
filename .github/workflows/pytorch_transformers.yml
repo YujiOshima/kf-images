@@ -31,7 +31,7 @@ jobs:
           CR_PAT: ${{ secrets.GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
       - name: Push
-        run: docker push ghcr.io/${OWNER,,}/pytorch_transformers:${VERSION}
+        run: docker push ghcr.io/${OWNER,,}/pytorch_transformers
         env:
           OWNER: ${{ github.repository_owner }}
           VERSION: ${{ matrix.version }}
