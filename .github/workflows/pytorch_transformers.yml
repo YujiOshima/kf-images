@@ -21,7 +21,7 @@ jobs:
           patterns: |
             pytorch_transformers//
       - name: Build
-        run: docker build -t ghcr.io/${OWNER,,}/pytorch_transformers:${VERSION} .
+        run: docker build -t ghcr.io/${OWNER,,}/pytorch_transformers .
         env:
           OWNER: ${{ github.repository_owner }}
           VERSION: ${{ matrix.version }}
