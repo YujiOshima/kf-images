@@ -21,7 +21,7 @@ jobs:
           patterns: |
             pytorch_transformers//
       - name: Build
-        run: docker build -t ghcr.io/${OWNER,,}/pytorch_transformers .
+        run: docker build -t ghcr.io/${OWNER,,}/pytorch_transformers:${{ github.sha }} .
         env:
           OWNER: ${{ github.repository_owner }}
           VERSION: ${{ matrix.version }}
@@ -31,7 +31,7 @@ jobs:
           CR_PAT: ${{ secrets.GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
       - name: Push
-        run: docker push ghcr.io/${OWNER,,}/pytorch_transformers
+        run: docker push ghcr.io/${OWNER,,}/pytorch_transformers:${{ github.sha }}
         env:
           OWNER: ${{ github.repository_owner }}
           VERSION: ${{ matrix.version }}
