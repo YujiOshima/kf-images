@@ -1,10 +1,10 @@
-name: CodeServerPythonCuda
+name: CodeServerPytorchCuda
 
 on:
   push:
     paths:
-      - .github/workflows/codeserver-python-cuda.yml
-      - codeserver-python-cuda/**/*
+      - .github/workflows/codeserver-pytorch-cuda.yml
+      - codeserver-pytorch-cuda/**/*
   workflow_dispatch:
 
 jobs:
@@ -13,15 +13,15 @@ jobs:
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: codeserver-python-cuda/
+        working-directory: codeserver-pytorch-cuda/
 
     steps:
       - uses: snow-actions/sparse-checkout@v1.1.0
         with:
           patterns: |
-            codeserver-python-cuda/
+            codeserver-pytorch-cuda/
       - name: Build
-        run: docker build -t ghcr.io/${OWNER,,}/codeserver-python-cuda:${{ github.sha }} .
+        run: docker build -t ghcr.io/${OWNER,,}/codeserver-pytorch-cuda:${{ github.sha }} .
         env:
           OWNER: ${{ github.repository_owner }}
           VERSION: ${{ matrix.version }}
@@ -31,7 +31,7 @@ jobs:
           CR_PAT: ${{ secrets.GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
       - name: Push
-        run: docker push ghcr.io/${OWNER,,}/codeserver-python-cuda:${{ github.sha }}
+        run: docker push ghcr.io/${OWNER,,}/codeserver-pytorch-cuda:${{ github.sha }}
         env:
           OWNER: ${{ github.repository_owner }}
           VERSION: ${{ matrix.version }}
