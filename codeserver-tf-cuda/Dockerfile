@@ -72,6 +72,10 @@ RUN ln -s /usr/local/cuda-${CUDA_VERSION}/targets/x86_64-linux/lib/libcusolver.s
 
 # tensorflow fix - some tensorflow tools expect a `python` binary
 RUN ln -s $(which python3) /usr/local/bin/python
+
+COPY cuda-requirements.txt /tmp/requirements.txt
+RUN python3 -m pip install -r /tmp/requirements.txt --quiet --no-cache-dir \
+    && rm -f /tmp/requirements.txt
 USER $NB_UID
 
 EXPOSE 8888
