@@ -52,7 +52,7 @@ ARG OLD_CUDA_VERSION=9.0
 ARG CUDA_VERSION=9.0
 ARG CUDA_COMPAT_VERSION=460.73.01-1
 ARG CUDA_CUDART_VERSION=11.2.152-1
-ARG CUDNN_VERSION=8.1.0.77-1
+ARG CUDNN_VERSION=7.6.5.77-1
 ARG LIBNVINFER_VERSION=7.2.3-1
 
 # we need bash's env var character substitution
@@ -87,7 +87,7 @@ RUN curl -sL "https://developer.download.nvidia.com/compute/machine-learning/rep
     cuda-command-line-tools-${CUDA_VERSION/./-} \
     cuda-nvrtc-${CUDA_VERSION/./-} \
     libcublas-${CUDA_VERSION/./-} \
-    libcudnn8=${CUDNN_VERSION}+cuda${CUDA_VERSION} \
+    libcudnn7 \
     libcufft-${CUDA_VERSION/./-} \
     libcurand-${CUDA_VERSION/./-} \
     libcusolver-${CUDA_VERSION/./-} \
@@ -98,6 +98,7 @@ RUN curl -sL "https://developer.download.nvidia.com/compute/machine-learning/rep
     libnvinfer-plugin7=${LIBNVINFER_VERSION}+cuda${OLD_CUDA_VERSION} \
     libzmq3-dev \
     pkg-config \
+    # libcudnn7=${CUDNN_VERSION}+cuda${CUDA_VERSION} \
     # can't be used until NVIDIA updates (requires python < 3.7)
     # python3-libnvinfer=${LIBNVINFER_VERSION}+cuda${CUDA_VERSION} \
     && apt-get clean \
