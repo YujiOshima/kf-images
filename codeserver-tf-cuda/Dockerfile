@@ -47,9 +47,9 @@ RUN code-server --install-extension "ms-python.python@${CODESERVER_PYTHON_VERSIO
 # s6 - copy scripts
 COPY --chown=jovyan:users s6/ /etc
 # needed for LIBNVINFER
-ARG OLD_CUDA_VERSION=11.1
+ARG OLD_CUDA_VERSION=9.0
 # args - software versions
-ARG CUDA_VERSION=11.2
+ARG CUDA_VERSION=9.0
 ARG CUDA_COMPAT_VERSION=460.73.01-1
 ARG CUDA_CUDART_VERSION=11.2.152-1
 ARG CUDNN_VERSION=8.1.0.77-1
