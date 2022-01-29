@@ -14,8 +14,6 @@ ENV PATH "${CONDA_DIR}/bin:${PATH}"
 RUN mkdir -p ${CONDA_DIR} \
     && chown -R ${NB_USER}:users ${CONDA_DIR}
 
-USER $NB_UID
-
 # install - conda, pip, python
 RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh" -o /tmp/Miniforge3.sh \
     && curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh.sha256" -o /tmp/Miniforge3.sh.sha256 \
