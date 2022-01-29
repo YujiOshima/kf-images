@@ -74,6 +74,7 @@ RUN ln -s /usr/local/cuda-${CUDA_VERSION}/targets/x86_64-linux/lib/libcusolver.s
 RUN ln -s $(which python3) /usr/local/bin/python
 
 COPY cuda-requirements.txt /tmp/requirements.txt
+RUN https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.12.0-cp36-cp36m-linux_x86_64.whl
 RUN python3 -m pip install -r /tmp/requirements.txt --quiet --no-cache-dir \
     && rm -f /tmp/requirements.txt
 USER $NB_UID
